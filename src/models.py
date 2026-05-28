@@ -20,7 +20,8 @@ Return ONLY a JSON object with this exact structure:
         "valence": <float between 0 (strongly low) and 1 (strongly high)>
     }},
     "pair": {{
-        "uncertainty": <0 (no uncertainty), 1 (uncertainty resolved), or 2 (uncertainty unresolved)>
+        "uncertainty": <float between 0 (very certain) and 1 (very uncertain)>, 
+        "resolution": <float, between 0 (unresolved) or 1 (resolved)>
     }}
 }}"""
 

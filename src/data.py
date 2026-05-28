@@ -46,7 +46,8 @@ def save_result(output_path: str, row: dict, result: dict) -> None:
             "valence_1": s1.get("valence", None),
             "sentiment_2": s2.get("sentiment", None),
             "valence_2": s2.get("valence", None),
-            "pair_uncertainty": pair.get("uncertainty", None)
+            "pair_uncertainty": pair.get("uncertainty", None),
+            "pair_resolution": pair.get("resolution", None)
         }
 
     except Exception as e:
