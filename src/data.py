@@ -52,8 +52,8 @@ def save_result(output_path: str, row: dict, result: dict) -> None:
 
     except Exception as e:
         print(f"Error processing result for row {row}: {e}")
-        combined = {**row, "sentiment_1": None, "valence_1": None, "sentiment_2": None, "valence_2": None, "uncertainty": None}
-    
+        combined = {**row, "sentiment_1": None, "valence_1": None, "sentiment_2": None, "valence_2": None, "pair_uncertainty": None, "pair_resolution": None}
+
     df_row = pd.DataFrame([combined])
     write_header = not os.path.exists(output_path)
     df_row.to_csv(output_path, mode='a', header=write_header,
