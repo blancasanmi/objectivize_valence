@@ -24,7 +24,6 @@ Return ONLY a JSON object with this exact structure:
         "resolution": <float, between 0 (unresolved) or 1 (resolved)>
     }}
 }}"""
-
 load_dotenv()
 
 class MistralModel:
@@ -43,7 +42,7 @@ class MistralModel:
             messages=[
                 {
                     "role": "user",
-                    "content": f"sentence_1: {sentence_1}\nsentence_2: {sentence_2}" + PROMPT,
+                    "content": PROMPT + f"\n\nSentence 1: {sentence_1}\nSentence 2: {sentence_2}",
                 },
             ],
             stream=False,
