@@ -42,17 +42,18 @@ def save_result(output_path: str, row: dict, result: dict) -> None:
 
         combined = {
             **row,
-            "sentiment_1": s1.get("sentiment", None),
             "valence_1": s1.get("valence", None),
-            "sentiment_2": s2.get("sentiment", None),
+            "arousal_1": s1.get("arousal", None),
+            "uncertainty_1": s1.get("uncertainty", None),
             "valence_2": s2.get("valence", None),
-            "pair_uncertainty": pair.get("uncertainty", None),
-            "pair_resolution": pair.get("resolution", None)
+            "arousal_2": s2.get("arousal", None),
+            "uncertainty_2": s2.get("uncertainty", None),
+            "resolution": pair.get("resolution", None)
         }
 
     except Exception as e:
         print(f"Error processing result for row {row}: {e}")
-        combined = {**row, "sentiment_1": None, "valence_1": None, "sentiment_2": None, "valence_2": None, "pair_uncertainty": None, "pair_resolution": None}
+        combined = {**row, "valence_1": None, "arousal_1": None, "uncertainty_1": None, "valence_2": None, "arousal_2": None, "uncertainty_2": None}
 
     df_row = pd.DataFrame([combined])
     write_header = not os.path.exists(output_path)

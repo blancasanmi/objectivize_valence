@@ -4,11 +4,11 @@ from src.models import MistralModel
 
 
 if __name__ == "__main__":
-    iterator = CSVIterator("data/data.csv")
-    model = MistralModel("ministral-3b-latest")
+    iterator = CSVIterator("data/combined_valid_sentences.csv")
+    model = MistralModel("mistral-medium-3-5")
 
     for row in iterator:    
-        result = model.score(row["first_sentence"], row["second_sentence"])
+        result = model.score(row["first"], row["second"])
         print(f"Processed row {iterator.index}/{len(iterator)}")
         print(f"Result: {result}")
         save_result("data/output.csv", row, result)

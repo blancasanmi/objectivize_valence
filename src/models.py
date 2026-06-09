@@ -5,25 +5,27 @@ from mistralai import Mistral
 from dotenv import load_dotenv
 import os
 
-PROMPT = f"""You are analyzing French sentences from a psychological experiment on suspense and reading.
+PROMPT = f"""Vous analysez des phrases en français.
 
-Analyze the following two sentences and return a JSON object with the following structure:
+Analysez les deux phrases suivantes et retournez un objet JSON avec la structure suivante :
 
-Return ONLY a JSON object with this exact structure:
+Retournez UNIQUEMENT un objet JSON avec exactement cette structure :
 {{
     "sentence_1": {{
-        "sentiment": <float between -1 (strongly negative) and 1 (strongly positive)>,
-        "valence": <float between 0 (strongly low) and 1 (strongly high)>
+        "valence": <nombre décimal entre -1 (très négatif) et 1 (très positif)>,
+        "arousal": <nombre décimal entre -1 (faible activation émotionnelle) et 1 (forte activation émotionnelle)>,
+        "uncertainty": <nombre décimal entre -1 (très certain) et 1 (très incertain)>
     }},
     "sentence_2": {{
-        "sentiment": <float between -1 (strongly negative) and 1 (strongly positive)>,
-        "valence": <float between 0 (strongly low) and 1 (strongly high)>
+        "valence": <nombre décimal entre -1 (très négatif) et 1 (très positif)>,
+        "arousal": <nombre décimal entre -1 (faible activation émotionnelle) et 1 (forte activation émotionnelle)>,
+        "uncertainty": <nombre décimal entre -1 (très certain) et 1 (très incertain)>
     }},
     "pair": {{
-        "uncertainty": <float between 0 (very certain) and 1 (very uncertain)>, 
-        "resolution": <float, between 0 (unresolved) or 1 (resolved)>
+        "resolution": <nombre décimal entre -1 (incertitude résolue) et 1 (incertitude non résolue)>
     }}
 }}"""
+
 load_dotenv()
 
 class MistralModel:
@@ -42,7 +44,7 @@ class MistralModel:
             messages=[
                 {
                     "role": "user",
-                    "content": PROMPT + f"\n\nSentence 1: {sentence_1}\nSentence 2: {sentence_2}",
+                    "content": PROMPT + f"\n\nPhrase 1: {sentence_1}\nPhrase 2: {sentence_2}",
                 },
             ],
             stream=False,
