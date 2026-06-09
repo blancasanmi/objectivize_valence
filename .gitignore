@@ -1,2 +1,4 @@
 .env
 data/
+data/combined_valid_sentences.csv
+data/combined_valid_sentences.xlsx
