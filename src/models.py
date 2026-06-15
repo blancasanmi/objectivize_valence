@@ -27,6 +27,8 @@ Retournez UNIQUEMENT un objet JSON avec exactement cette structure :
 }}"""
 
 load_dotenv()
+key = os.getenv("MISTRAL_API_KEY")
+print(repr(key))
 
 class MistralModel:
     def __init__(self, model_name: str):
