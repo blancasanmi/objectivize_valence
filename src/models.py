@@ -74,11 +74,11 @@ class MistralModel:
                 messages=[
                     {
                         "role": "user",
-                        "content": f"Explain in French how to interpret the concept of '{concept}' in the context of emotional analysis of sentence pairs.",
+                        "content": f"Comment as-tu calculé le concept de {concept} dans les phrases antérieures. Soit concis, explique en peu de lignes.",
                     },
                 ],
                 stream=False,
             )
-        print("returning the answer")
+        print("returning the message")
         return res.choices[0].message.content
         
