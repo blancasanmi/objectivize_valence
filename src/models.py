@@ -74,7 +74,7 @@ class MistralModel:
                 messages=[
                     {
                         "role": "user",
-                        "content": f"Comment as-tu calculé le concept de {concept} dans les phrases antérieures. Soit concis, explique en peu de lignes.",
+                        "content": f"Comment as-tu calculé le concept de {concept} dans les pharases précédentes ? Sois concis et explique en quelques lignes.",
                     },
                 ],
                 stream=False,
