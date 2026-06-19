@@ -22,7 +22,8 @@ Retournez UNIQUEMENT un objet JSON avec exactement cette structure :
         "uncertainty": <nombre décimal entre -1 (très certain) et 1 (très incertain)>
     }},
     "pair": {{
-        "resolution": <nombre décimal entre -1 (incertitude résolue) et 1 (incertitude non résolue)>
+        "resolution": <nombre décimal entre -1 (incertitude résolue) et 1 (incertitude non résolue)>,
+        "surprise": <nombre décimal entre -1 (pas surprenant) et 1 (très surprenant)>
     }}
 }}"""
 
@@ -61,3 +62,23 @@ class MistralModel:
     def score(self, sentence_1: str, sentence_2: str) -> dict:
         response = self.query(sentence_1, sentence_2)
         return json.loads(response)
+    
+    def query_how(self, concept: str) -> str:
+        """Query Mistral about how to interpret a concept."""
+        print("asking Mistral about ", concept)
+        with Mistral(
+            api_key=self.key,
+        ) as mistral:
+            res = mistral.chat.complete(
+                model=self.model_name,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"Explain in French how to interpret the concept of '{concept}' in the context of emotional analysis of sentence pairs.",
+                    },
+                ],
+                stream=False,
+            )
+        print("returning the answer")
+        return res.choices[0].message.content
+        
